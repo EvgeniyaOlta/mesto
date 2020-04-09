@@ -17,8 +17,8 @@
 
 @media (max-width : 767px) {
   .add-button {
-    position: relative;
     margin-top: 36px;
+    position: static;
     background-size: 16px;
   }
 }

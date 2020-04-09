@@ -10,7 +10,7 @@
   margin: auto;
   margin-top: 45px;
   margin-bottom: 0px;
-  border-bottom: 1px rgba(255,255,255,0.7) solid;
+  border-bottom: 1px rgba(255,255,255,0.3) solid;
 }
 
 @media (max-width : 1279px) {
