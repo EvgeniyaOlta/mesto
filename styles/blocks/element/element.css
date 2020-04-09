@@ -1,0 +1,23 @@
+@import url(./__name/element__name.css);
+@import url(./__image/element__image.css);
+@import url(./__like/element__like.css);
+
+.element{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: white;
+  width: 310px;
+  height: 361px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+@media (max-width : 1280px) {
+  .element {
+    width: 282px;
+  }
+}  
+
+

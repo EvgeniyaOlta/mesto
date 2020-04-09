@@ -1,0 +1,36 @@
+.elements {
+  display: grid;
+  width: 1000px;
+  margin: auto;
+  margin-bottom: 0px;
+  margin-top: 47px;
+  grid-gap: 18px; 
+  grid-template-columns: repeat(auto-fill, minmax(282px, 1fr));
+}
+
+@media (max-width : 1280px) {
+  .elements {
+    width: 882px;
+    grid-gap: 18px;
+  }
+}
+
+@media (max-width : 1023px) {
+  .elements {
+    width: 600px;
+    grid-gap: 18px;
+  }
+}
+
+@media (max-width : 767px) {
+  .elements {
+    grid-gap: 20px;
+  }
+}
+
+@media (max-width : 650px) {
+  .elements {
+    width: 282px;
+  }
+}
+
