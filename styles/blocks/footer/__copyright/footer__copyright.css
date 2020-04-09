@@ -1,0 +1,21 @@
+.footer__copyright {
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 20px;
+text-align: right;
+position: absolute;
+right: 0px;
+bottom: 0px;
+}
+
+@media (max-width: 767px) {
+  .footer__copyright {
+    position: relative;
+    text-align: start;
+    margin-bottom: 0px;
+  }
+}
+
+
+
