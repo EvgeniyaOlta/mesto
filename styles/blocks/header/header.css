@@ -1,6 +1,4 @@
 @import url(./__logo/header__logo.css);
-@import url(./__lang/header__lang.css);
-@import url(./__lang/_active/header__lang_active.css);
 
 
 .header {
@@ -28,12 +26,6 @@
 }
 
 @media (max-width : 767px) {
-  .header {
-    width: 100%;
-    margin: 0px;
-  }
-}
-@media (max-width : 374px) {
   .header {
     width: 100%;
     margin: 0px;
