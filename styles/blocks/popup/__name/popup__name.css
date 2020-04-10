@@ -9,9 +9,6 @@
   border-bottom: 1px rgba(0,0,0,0.2) solid;
 }
 
-.popup__name:focus{
-  outline: none;
-}
 
 .popup__name::placeholder {
   font-family: Inter;

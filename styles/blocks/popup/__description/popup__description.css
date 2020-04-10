@@ -9,9 +9,6 @@
   border-bottom: 1px rgba(0,0,0,0.2) solid;
 }
 
-.popup__description{
-  outline: none;
-}
 
 .popup__description::placeholder {
   font-family: Inter;

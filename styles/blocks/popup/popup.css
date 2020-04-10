@@ -1,4 +1,3 @@
-@import url(./_opened/popup_opened.css);
 @import url(./__name/popup__name.css);
 @import url(./__title/popup__title.css);
 @import url(./__list/popup__list.css);
@@ -19,11 +18,5 @@
   align-content: center;
   display: none;
 }
-
-@media (max-width : 1280px) {
-  .element {
-    width: 282px;
-  }
-}  
 
 
