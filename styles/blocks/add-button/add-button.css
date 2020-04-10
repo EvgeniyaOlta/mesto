@@ -13,7 +13,12 @@
 
 .add-button:hover {
   opacity:0.5;
+  cursor: pointer;
 }
+
+.add-button:focus {
+  outline:none;
+ }
 
 @media (max-width : 767px) {
   .add-button {
