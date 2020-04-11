@@ -39,3 +39,4 @@ Grid использовался для создания сетки с фотог
 
 
 Ссылка на GitHub Pages
+https://evgeniyaolta.github.io/mesto/index.html
