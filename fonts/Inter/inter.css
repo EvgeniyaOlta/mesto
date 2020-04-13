@@ -32,6 +32,7 @@
        url("Inter-ExtraLightItalic.woff?v=3.12") format("woff");
 }
 
+
 @font-face {
   font-family: 'Inter';
   font-style:  normal;
@@ -48,6 +49,7 @@
   src: url("Inter-LightItalic.woff2?v=3.12") format("woff2"),
        url("Inter-LightItalic.woff?v=3.12") format("woff");
 }
+*/ 
 
 @font-face {
   font-family: 'Inter';

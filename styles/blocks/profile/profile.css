@@ -3,6 +3,9 @@
 @import url(./__info/profile__info.css);
 @import url(./__first-line/profile__first-line.css);
 @import url(./__description/profile__description.css);
+@import url(./__add-button/profile__add-button.css);
+@import url(./__edit-button/profile__edit-button.css);
+
 
 
 .profile {
@@ -15,6 +18,7 @@
   margin-top: 36px;
   margin-bottom: 0px;
   height: auto;
+  box-sizing: border-box;
 }
 
 @media (max-width : 1280px) {

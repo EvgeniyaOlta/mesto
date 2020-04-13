@@ -1,4 +1,7 @@
-.popup__name{
+.popup__input{
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
   width: 358px;
   height: auto;
   margin: 0px;
@@ -10,12 +13,7 @@
 }
 
 
-.popup__name::placeholder {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
+.popup__input::placeholder {
   color: black;
 }
 

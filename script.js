@@ -1,28 +1,33 @@
 let body = document.querySelector('.root');
 let popup = body.querySelector('.popup');
-let editButton = body.querySelector('.edit-button');
+const editButton = body.querySelector('.profile__edit-button');
+const closeButton = body.querySelector('.popup__close-button');
+let name = body.querySelector('.profile__name');
+let description = body.querySelector('.profile__description');
+let formElement = body.querySelector('.popup__container');
+let nameInput = popup.querySelector('[name="name"]');
+let descriptionInput = popup.querySelector('[name="description"]');
 
 function openPopup() {
     popup.classList.add('popup_opened');
+    popup.classList.remove('popup_closed');
 }
 editButton.addEventListener('click', openPopup);
 
-let closeButton = body.querySelector('.close-button'); 
+ 
 function closePopup() {
     popup.classList.remove('popup_opened');
+    popup.classList.add('popup_closed');
 }
 closeButton.addEventListener('click', closePopup);
 
-let formElement = body.querySelector('.popup__container');
+
 function formSubmitHandler (evt) {
-    evt.preventDefault();
-    let nameInput = body.querySelector('.popup__name');
-    let descriptionInput = body.querySelector('.popup__description');
-    let name = body.querySelector('.profile__name');
-    let description = body.querySelector('.profile__description');
+    evt.preventDefault();    
     name.textContent = nameInput.value;
     description.textContent= descriptionInput.value;
     popup.classList.remove('popup_opened');
+    popup.classList.add('popup_closed');
  }
 formElement.addEventListener('submit', formSubmitHandler);
 
