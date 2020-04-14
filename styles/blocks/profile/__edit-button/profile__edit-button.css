@@ -1,5 +1,4 @@
 .profile__edit-button{
-  position: relative;
   width: 24px;
   height: 24px;
   margin-left: 17px;
@@ -16,11 +15,12 @@
   opacity:0.6;
   cursor: pointer;
   transition: all 0.5s ease;
+  position: relative;
   top: 1px;
-  }
+}
   
 .profile__edit-button:focus {
- outline:none;
+  outline:none;
 }
 
 @media (max-width : 450px) {

@@ -9,6 +9,7 @@
   padding: 0px;
   background-image: url(../../../../images/like.svg);
   background-size: cover;
+  background-color: transparent;
 }
 
 .element__like-button:hover {

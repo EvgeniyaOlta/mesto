@@ -1,12 +1,12 @@
 .popup__list{
- width: 358px;
- width: auto;
- display: flex;
- flex-direction: column;
- margin-left: 36px;
- justify-content: start;
- padding: 0px;
- border-style: none;
+  width: 358px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  margin-left: 36px;
+  justify-content: start;
+  padding: 0px;
+  border-style: none;
 }  
 
 
