@@ -29,39 +29,9 @@
           <article class="element">
             <img class="element__image">
             <p class="element__name"></p>
-            <button class="element__like-button" type="button"></button>
+            <button class="element__like-button element__like-button_disactive" type="button"></button>
           </article>
       </template>
-        <!-- <article class="element">
-          <img class="element__image" src="./images/pacific.jpg" alt="Бескрайняя морская гладь.">
-          <p class="element__name">Тихий океан</p>
-          <button class="element__like-button" type="button"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/blue.jpg" alt="Силуэт мужчины, отображающийся в голубой воде.">
-          <p class="element__name">"Голубой континент"</p>
-          <button class="element__like-button" type="button"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/indian.jpg" alt="Белый песоки бирюзовые волны.">
-          <p class="element__name">Индийский океан</p>
-          <button class="element__like-button" type="button"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/atlantic.jpg" alt="След на воде от идущего корабля.">
-          <p class="element__name">Атлантический океан</p>
-          <button class="element__like-button" type="button"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/ligurian.jpg" alt="Корабль плывет по синему морю.">
-          <p class="element__name">Лигурийское море</p>
-          <button class="element__like-button" type="button"></button>
-        </article>
-        <article class="element">
-          <img class="element__image" src="./images/arctic.jpg" alt="Большой айсберг в воде.">
-          <p class="element__name">Северный Ледовитый океан</p>
-          <button class="element__like-button" type="button"></button>
-        </article> -->
       </section>
 
       <section class="popup popup_closed">
@@ -75,7 +45,19 @@
           </fieldset>
         </form>
       </section>
-     
+
+      <section class="newplace-popup newplace-popup_closed">
+        <form class="newplace-popup__container"> 
+          <button class="newplace-popup__close-button" type="button"></button>
+          <p class="newplace-popup__title">Новое место</p>
+          <fieldset class="newplace-popup__list">
+            <input type="text" class="newplace-popup__input" name="placename" placeholder="Название" value="">
+            <input type="text" class="newplace-popup__input" name="link" placeholder="Ссылка на картинку" value="">
+            <button type="submit" class="newplace-popup__save-button">Создать</button>
+          </fieldset>
+        </form>
+      </section>
+ 
     </main>
     <footer class="footer">
       <p class="footer__copyright"> &copy; 2020 Mesto Russia</p>

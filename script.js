@@ -8,6 +8,14 @@ let formElement = body.querySelector('.popup__container');
 let nameInput = popup.querySelector('[name="name"]');
 let descriptionInput = popup.querySelector('[name="description"]');
 
+let newplacePopup = body.querySelector('.newplace-popup');
+const addButton = body.querySelector('.profile__add-button');
+const closenewplaceButton = body.querySelector('.newplace-popup__close-button');
+let formPlace = body.querySelector('.newplace-popup__container');
+let placenameInput = newplacePopup.querySelector('[name="placename"]');
+let linkInput = newplacePopup.querySelector('[name="link"]');
+
+
 
 const сards = [
     {
@@ -49,20 +57,17 @@ const сards = [
 });
 
 
-
 function openPopup() {
     popup.classList.add('popup_opened');
     popup.classList.remove('popup_closed');
 }
 editButton.addEventListener('click', openPopup);
 
- 
 function closePopup() {
     popup.classList.remove('popup_opened');
     popup.classList.add('popup_closed');
 }
 closeButton.addEventListener('click', closePopup);
-
 
 function formSubmitHandler (evt) {
     evt.preventDefault();    
@@ -75,3 +80,47 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 
 
+
+function opennewplacePopup() {
+    newplacePopup.classList.add('newplace-popup_opened');
+    newplacePopup.classList.remove('newplace-popup_closed');
+}
+addButton.addEventListener('click', opennewplacePopup);
+
+function closenewplacePopup() {
+    newplacePopup.classList.remove('newplace-popup_opened');
+    newplacePopup.classList.add('newplace-popup_closed');
+}
+closenewplaceButton.addEventListener('click', closenewplacePopup);
+
+function formPlaceSubmitHandler (evt) {
+    evt.preventDefault(); 
+
+    const elementTemplate = document.querySelector('#card').content;
+    
+    const elements = document.querySelector('.elements');
+    const element = elementTemplate.cloneNode(true);
+    
+    element.querySelector('.element__image').src = `${linkInput.value}`;
+    element.querySelector('.element__name').textContent = `${placenameInput.value}`;
+    
+    elements.prepend (element);
+
+    newplacePopup.classList.remove('newplace-popup_opened');
+    newplacePopup.classList.add('newplace-popup_closed');
+};
+
+formPlace.addEventListener('submit', formPlaceSubmitHandler);
+
+
+let buttonCollection = document.querySelectorAll('.element__like-button'),
+    index, button;
+
+for (index = 0; index < buttonCollection.length; index++) {
+    likeButton = buttonCollection[index];
+    likeButton.addEventListener('click', function (evt) {
+        const eventTarget = evt.target;
+        eventTarget.classList.toggle('element__like-button_active');
+        eventTarget.classList.toggle('element__like-button_disactive');
+        });
+}
