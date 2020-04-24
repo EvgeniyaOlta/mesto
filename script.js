@@ -113,14 +113,26 @@ function formPlaceSubmitHandler (evt) {
 formPlace.addEventListener('submit', formPlaceSubmitHandler);
 
 
-let buttonCollection = document.querySelectorAll('.element__like-button'),
+let likebuttonCollection = document.querySelectorAll('.element__like-button'),
     index, button;
 
-for (index = 0; index < buttonCollection.length; index++) {
-    likeButton = buttonCollection[index];
+for (index = 0; index < likebuttonCollection.length; index++) {
+    likeButton = likebuttonCollection[index];
     likeButton.addEventListener('click', function (evt) {
-        const eventTarget = evt.target;
-        eventTarget.classList.toggle('element__like-button_active');
-        eventTarget.classList.toggle('element__like-button_disactive');
+        const likeEventTarget = evt.target;
+        likeEventTarget.classList.toggle('element__like-button_active');
+        likeEventTarget.classList.toggle('element__like-button_disactive');
+        });
+}
+
+let removebuttonCollection = document.querySelectorAll('.element__remove-button'),
+    ind, but;
+
+for (ind = 0; ind < removebuttonCollection.length; ind++) {
+    removeButton = removebuttonCollection[ind];
+    removeButton.addEventListener('click', function (evt) {
+        const removeEventTarget = evt.target; 
+        const removeElement = removeEventTarget.parentElement;
+        removeElement.remove();
         });
 }
