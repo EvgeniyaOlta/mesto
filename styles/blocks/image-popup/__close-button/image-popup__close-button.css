@@ -21,3 +21,10 @@
 .image-popup__close-button:focus {
   outline:none;
 }
+
+@media (max-width : 520px) {
+  .image-popup__close-button {
+    width: 30px;
+    height: 30px;
+  }
+} 

@@ -14,11 +14,12 @@ const closenewplaceButton = body.querySelector('.newplace-popup__close-button');
 let formPlace = body.querySelector('.newplace-popup__container');
 let placenameInput = newplacePopup.querySelector('[name="placename"]');
 let linkInput = newplacePopup.querySelector('[name="link"]');
+let imagePopupsBlock = body.querySelector('.image-popups');
 
 
 
-const сards = [
-    {
+const сards = [ 
+   {
         name: 'Архыз',
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
@@ -56,6 +57,16 @@ const сards = [
     elements.append(element);
 });
 
+сards.forEach(function (popup) {
+    const popupTemplate = document.querySelector('#popup').content;
+    
+    const imagePopup = popupTemplate.cloneNode(true);
+    
+    imagePopup.querySelector('.image-popup__image').src = popup.link;
+    imagePopup.querySelector('.image-popup__title').textContent = popup.name;
+    
+    imagePopupsBlock.append(imagePopup);
+});
 
 function openPopup() {
     popup.classList.add('popup_opened');
@@ -116,7 +127,7 @@ formPlace.addEventListener('submit', formPlaceSubmitHandler);
 let likebuttonCollection = document.querySelectorAll('.element__like-button'),
     index, button;
 
-for (index = 0; index < likebuttonCollection.length; index++) {
+for (let index = 0; index < likebuttonCollection.length; index++) {
     likeButton = likebuttonCollection[index];
     likeButton.addEventListener('click', function (evt) {
         const likeEventTarget = evt.target;
@@ -128,11 +139,44 @@ for (index = 0; index < likebuttonCollection.length; index++) {
 let removebuttonCollection = document.querySelectorAll('.element__remove-button'),
     ind, but;
 
-for (ind = 0; ind < removebuttonCollection.length; ind++) {
-    removeButton = removebuttonCollection[ind];
+for (let index = 0; index < removebuttonCollection.length; index++) {
+    removeButton = removebuttonCollection[index];
     removeButton.addEventListener('click', function (evt) {
         const removeEventTarget = evt.target; 
         const removeElement = removeEventTarget.parentElement;
         removeElement.remove();
         });
 }
+
+let imagePopupCollection = document.querySelectorAll('.element__image'),
+    image;
+
+for (let index = 0; index < imagePopupCollection.length; index++) {
+    imagePopupButton = imagePopupCollection[index];
+    imagePopupButton.addEventListener('click', function (evt) {
+        const imagePopupTarget = evt.target; 
+        imageSrc = imagePopupTarget.src;
+        
+        necessaryImage = imagePopupsBlock.querySelector('img[src="' + imageSrc + '"]');
+        
+        necessaryContainer  = necessaryImage.parentElement;
+        necessaryImagePopup  = necessaryContainer.parentElement;
+
+        necessaryImagePopup.classList.remove('image-popup_closed');
+        necessaryImagePopup.classList.add('image-popup_opened');
+    });
+}
+
+let closeImageButtonCollection = document.querySelectorAll('.image-popup__close-button');
+
+for (let index = 0; index < closeImageButtonCollection.length; index++) {
+    closeImageButton = closeImageButtonCollection[index];
+    closeImageButton.addEventListener('click', function (evt) {
+        const closeImageTarget = evt.target; 
+        necessaryContainer  = closeImageTarget.parentElement;
+        necessaryImagePopup  = necessaryContainer.parentElement;
+        necessaryImagePopup.classList.remove('image-popup_opened');
+        necessaryImagePopup.classList.add('image-popup_closed');
+        });
+}
+

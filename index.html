@@ -32,7 +32,7 @@
             <p class="element__name"></p>
             <button class="element__like-button element__like-button_disactive" type="button"></button>
           </article>
-      </template>
+        </template>
       </section>
 
       <section class="popup popup_closed">
@@ -58,7 +58,21 @@
           </fieldset>
         </form>
       </section>
- 
+
+        
+      <template id="popup">
+        <article class="image-popup image-popup_closed">
+          <div class="image-popup__container"> 
+            <button class="image-popup__close-button" type="button"></button>
+            <img class="image-popup__image">
+            <p class="image-popup__title"></p>
+          </div>
+        </article>
+      </template>  
+      
+      <section class="image-popups">
+      </section>
+
     </main>
     <footer class="footer">
       <p class="footer__copyright"> &copy; 2020 Mesto Russia</p>

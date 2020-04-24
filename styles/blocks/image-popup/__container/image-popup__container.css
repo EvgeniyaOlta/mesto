@@ -1,18 +1,15 @@
 .image-popup__container {
-  width: 430px;
-  height: 330px;
-  background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
   position: relative;
-  border-radius: 10px;
+  display: flex;
+  margin: auto;
+  width: fit-content;
+  height: 75vh;
+  margin-top: 12.5vh;
 }
 
 @media (max-width : 520px) {
   .image-popup__container {
-    width: 240px;
-    height: 258px;
+    height: 53vh;
+    margin-top: 24vh;
   }
-}  
-
+} 
