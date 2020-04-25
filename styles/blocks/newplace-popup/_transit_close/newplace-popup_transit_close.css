@@ -1,0 +1,13 @@
+.newplace-popup_transit_close{
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.newplace-popup_transit_close:hover {
+  visibility: visible;
+  opacity: 0;
+}
+
+

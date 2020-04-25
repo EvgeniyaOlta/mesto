@@ -69,14 +69,25 @@ const сards = [
 });
 
 function openPopup() {
-    popup.classList.add('popup_opened');
     popup.classList.remove('popup_closed');
+    popup.classList.add('popup_transit_open');
+    function open(){
+        popup.classList.remove('popup_transit_open');
+        popup.classList.add('popup_opened');  
+    }
+    setTimeout(open, 500);
 }
 editButton.addEventListener('click', openPopup);
 
 function closePopup() {
     popup.classList.remove('popup_opened');
-    popup.classList.add('popup_closed');
+    popup.classList.add('popup_transit_close');
+    function close(){
+        popup.classList.remove('popup_transit_close');
+        popup.classList.add('popup_closed');  
+    }
+    setTimeout(close, 500);
+    
 }
 closeButton.addEventListener('click', closePopup);
 
@@ -90,19 +101,27 @@ function formSubmitHandler (evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 
 
-
-
-function opennewplacePopup() {
-    newplacePopup.classList.add('newplace-popup_opened');
+function openNewplacePopup() {
     newplacePopup.classList.remove('newplace-popup_closed');
+    newplacePopup.classList.add('newplace-popup_transit_open');
+    function open(){
+        newplacePopup.classList.remove('newplace-popup_transit_open');
+        newplacePopup.classList.add('newplace-popup_opened');  
+    }
+    setTimeout(open, 500);
 }
-addButton.addEventListener('click', opennewplacePopup);
+addButton.addEventListener('click', openNewplacePopup);
 
-function closenewplacePopup() {
+function closeNewplacePopup() {
     newplacePopup.classList.remove('newplace-popup_opened');
-    newplacePopup.classList.add('newplace-popup_closed');
+    newplacePopup.classList.add('newplace-popup_transit_close');
+    function close(){
+        newplacePopup.classList.remove('newplace-popup_transit_close');
+        newplacePopup.classList.add('newplace-popup_closed');  
+    }
+    setTimeout(close, 500);
 }
-closenewplaceButton.addEventListener('click', closenewplacePopup);
+closenewplaceButton.addEventListener('click', closeNewplacePopup);
 
 function formPlaceSubmitHandler (evt) {
     evt.preventDefault(); 
@@ -111,21 +130,33 @@ function formPlaceSubmitHandler (evt) {
     
     const elements = document.querySelector('.elements');
     const element = elementTemplate.cloneNode(true);
+    const elementLikeButton = element.querySelector('.element__like-button');
+    const elementRemoveButton = element.querySelector('.element__remove-button');
     
     element.querySelector('.element__image').src = `${linkInput.value}`;
     element.querySelector('.element__name').textContent = `${placenameInput.value}`;
-    
-    elements.prepend (element);
+    elementLikeButton.addEventListener('click', function (evt) {
+        const likeEventTarget = evt.target;
+        likeEventTarget.classList.toggle('element__like-button_active');
+        likeEventTarget.classList.toggle('element__like-button_disactive');
+    });
+    elementRemoveButton.addEventListener('click', function (evt) {
+        const removeEventTarget = evt.target; 
+        const removeElement = removeEventTarget.parentElement;
+        removeElement.remove();
+    });
 
+    elements.prepend (element);
     newplacePopup.classList.remove('newplace-popup_opened');
     newplacePopup.classList.add('newplace-popup_closed');
+    
 };
 
 formPlace.addEventListener('submit', formPlaceSubmitHandler);
 
 
-let likebuttonCollection = document.querySelectorAll('.element__like-button'),
-    index, button;
+
+const likebuttonCollection = document.querySelectorAll('.element__like-button');
 
 for (let index = 0; index < likebuttonCollection.length; index++) {
     likeButton = likebuttonCollection[index];
@@ -136,8 +167,7 @@ for (let index = 0; index < likebuttonCollection.length; index++) {
         });
 }
 
-let removebuttonCollection = document.querySelectorAll('.element__remove-button'),
-    ind, but;
+const removebuttonCollection = document.querySelectorAll('.element__remove-button');
 
 for (let index = 0; index < removebuttonCollection.length; index++) {
     removeButton = removebuttonCollection[index];
@@ -148,8 +178,7 @@ for (let index = 0; index < removebuttonCollection.length; index++) {
         });
 }
 
-let imagePopupCollection = document.querySelectorAll('.element__image'),
-    image;
+const imagePopupCollection = document.querySelectorAll('.element__image');
 
 for (let index = 0; index < imagePopupCollection.length; index++) {
     imagePopupButton = imagePopupCollection[index];
@@ -163,11 +192,17 @@ for (let index = 0; index < imagePopupCollection.length; index++) {
         necessaryImagePopup  = necessaryContainer.parentElement;
 
         necessaryImagePopup.classList.remove('image-popup_closed');
-        necessaryImagePopup.classList.add('image-popup_opened');
+        necessaryImagePopup.classList.add('image-popup_transit_open');
+        function open(){
+            necessaryImagePopup.classList.remove('image-popup_transit_open');
+            necessaryImagePopup.classList.add('image-popup_opened');  
+    }
+    setTimeout(open, 500);
+
     });
 }
 
-let closeImageButtonCollection = document.querySelectorAll('.image-popup__close-button');
+const closeImageButtonCollection = document.querySelectorAll('.image-popup__close-button');
 
 for (let index = 0; index < closeImageButtonCollection.length; index++) {
     closeImageButton = closeImageButtonCollection[index];
@@ -177,6 +212,13 @@ for (let index = 0; index < closeImageButtonCollection.length; index++) {
         necessaryImagePopup  = necessaryContainer.parentElement;
         necessaryImagePopup.classList.remove('image-popup_opened');
         necessaryImagePopup.classList.add('image-popup_closed');
+
+        necessaryImagePopup.classList.remove('image-popup_opened');
+        necessaryImagePopup.classList.add('image-popup_transit_close');
+        function close(){
+            necessaryImagePopup.classList.remove('image-popup_transit_close');
+            necessaryImagePopup.classList.add('image-popup_closed');  
+    }
+    setTimeout(close, 500);
         });
 }
-

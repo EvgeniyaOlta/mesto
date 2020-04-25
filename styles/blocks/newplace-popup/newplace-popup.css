@@ -6,6 +6,8 @@
 @import url(./__close-button/newplace-popup__close-button.css);
 @import url(./_opened/newplace-popup_opened.css);
 @import url(./_closed/newplace-popup_closed.css);
+@import url(./_transit_close/newplace-popup_transit_close.css);
+@import url(./_transit_open/newplace-popup_transit_open.css);
 
 .newplace-popup{
   position: fixed;
