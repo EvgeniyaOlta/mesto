@@ -6,8 +6,6 @@
 @import url(./__close-button/popup__close-button.css);
 @import url(./_opened/popup_opened.css);
 @import url(./_closed/popup_closed.css);
-@import url(./_transit_close/popup_transit_close.css);
-@import url(./_transit_open/popup_transit_open.css);
 
 .popup{
   position: fixed;

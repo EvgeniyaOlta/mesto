@@ -4,8 +4,6 @@
 @import url(./__image/image-popup__image.css);
 @import url(./_opened/image-popup_opened.css);
 @import url(./_closed/image-popup_closed.css);
-@import url(./_transit_close/image-popup_transit_close.css);
-@import url(./_transit_open/image-popup_transit_open.css);
 
 .image-popup{
   position: fixed;

@@ -1,23 +1,27 @@
 let body = document.querySelector('.root');
+
 let popup = body.querySelector('.popup');
-const editButton = body.querySelector('.profile__edit-button');
 const closeButton = body.querySelector('.popup__close-button');
+let formElement = body.querySelector('.popup__container');
+const editButton = body.querySelector('.profile__edit-button');
 let name = body.querySelector('.profile__name');
 let description = body.querySelector('.profile__description');
-let formElement = body.querySelector('.popup__container');
+
 let nameInput = popup.querySelector('[name="name"]');
 let descriptionInput = popup.querySelector('[name="description"]');
 
 let newplacePopup = body.querySelector('.newplace-popup');
-const addButton = body.querySelector('.profile__add-button');
 const closenewplaceButton = body.querySelector('.newplace-popup__close-button');
+const addButton = body.querySelector('.profile__add-button');
 let formPlace = body.querySelector('.newplace-popup__container');
 let placenameInput = newplacePopup.querySelector('[name="placename"]');
 let linkInput = newplacePopup.querySelector('[name="link"]');
-let imagePopupsBlock = body.querySelector('.image-popups');
+
+let imagePopup = body.querySelector('.image-popup');
+const imageCloseButton = body.querySelector('.image-popup__close-button');
 
 
-
+/*создаем карточки "из коробки"*/
 const сards = [ 
    {
         name: 'Архыз',
@@ -57,40 +61,42 @@ const сards = [
     elements.append(element);
 });
 
-сards.forEach(function (popup) {
-    const popupTemplate = document.querySelector('#popup').content;
-    
-    const imagePopup = popupTemplate.cloneNode(true);
-    
-    imagePopup.querySelector('.image-popup__image').src = popup.link;
-    imagePopup.querySelector('.image-popup__title').textContent = popup.name;
-    
-    imagePopupsBlock.append(imagePopup);
-});
 
-function openPopup() {
-    popup.classList.remove('popup_closed');
-    popup.classList.add('popup_transit_open');
-    function open(){
-        popup.classList.remove('popup_transit_open');
-        popup.classList.add('popup_opened');  
-    }
-    setTimeout(open, 500);
-}
-editButton.addEventListener('click', openPopup);
+/*открываем popup*/
+function openPopup(anyPopup) {
+    anyPopup.classList.remove(`${anyPopup.classList.item(0)}` + '_closed');
+    anyPopup.classList.add(`${anyPopup.classList.item(0)}` + '_opened');
+};
 
-function closePopup() {
-    popup.classList.remove('popup_opened');
-    popup.classList.add('popup_transit_close');
-    function close(){
-        popup.classList.remove('popup_transit_close');
-        popup.classList.add('popup_closed');  
-    }
-    setTimeout(close, 500);
-    
-}
-closeButton.addEventListener('click', closePopup);
+editButton.addEventListener('click', function() {
+    openPopup(popup);
+  });
 
+addButton.addEventListener('click', function() {
+    openPopup(newplacePopup);
+  });
+
+
+/*закрываем popup*/
+function closePopup(anyPopup) {
+    anyPopup.classList.add(`${anyPopup.classList.item(0)}` + '_closed');
+    anyPopup.classList.remove(`${anyPopup.classList.item(0)}` + '_opened');
+};
+
+closeButton.addEventListener('click', function() {
+    closePopup(popup);
+  });
+
+closenewplaceButton.addEventListener('click', function() {
+    closePopup(newplacePopup);
+  });
+
+imageCloseButton.addEventListener('click', function() {
+    closePopup(imagePopup);
+  });
+
+
+/*редактируем данные профиля через форму*/
 function formSubmitHandler (evt) {
     evt.preventDefault();    
     name.textContent = nameInput.value;
@@ -101,28 +107,7 @@ function formSubmitHandler (evt) {
 formElement.addEventListener('submit', formSubmitHandler);
 
 
-function openNewplacePopup() {
-    newplacePopup.classList.remove('newplace-popup_closed');
-    newplacePopup.classList.add('newplace-popup_transit_open');
-    function open(){
-        newplacePopup.classList.remove('newplace-popup_transit_open');
-        newplacePopup.classList.add('newplace-popup_opened');  
-    }
-    setTimeout(open, 500);
-}
-addButton.addEventListener('click', openNewplacePopup);
-
-function closeNewplacePopup() {
-    newplacePopup.classList.remove('newplace-popup_opened');
-    newplacePopup.classList.add('newplace-popup_transit_close');
-    function close(){
-        newplacePopup.classList.remove('newplace-popup_transit_close');
-        newplacePopup.classList.add('newplace-popup_closed');  
-    }
-    setTimeout(close, 500);
-}
-closenewplaceButton.addEventListener('click', closeNewplacePopup);
-
+/*создаем новую фотокарточку*/
 function formPlaceSubmitHandler (evt) {
     evt.preventDefault(); 
 
@@ -132,6 +117,7 @@ function formPlaceSubmitHandler (evt) {
     const element = elementTemplate.cloneNode(true);
     const elementLikeButton = element.querySelector('.element__like-button');
     const elementRemoveButton = element.querySelector('.element__remove-button');
+    const elementImage = element.querySelector('.element__image');
     
     element.querySelector('.element__image').src = `${linkInput.value}`;
     element.querySelector('.element__name').textContent = `${placenameInput.value}`;
@@ -146,16 +132,29 @@ function formPlaceSubmitHandler (evt) {
         removeElement.remove();
     });
 
+    elementImage.addEventListener('click', function (evt) {
+        const imageTarget = evt.target;
+        imageContainer = imageTarget.parentElement;
+        imageSrc = imageTarget.src;
+        imageName = imageContainer.querySelector('.element__name').textContent;
+
+        const imagePopup = document.querySelector('.image-popup');
+        imagePopup.querySelector('.image-popup__image').src = imageSrc;
+        imagePopup.querySelector('.image-popup__title').textContent = imageName; 
+    
+
+        imagePopup.classList.remove('image-popup_closed');
+        imagePopup.classList.add('image-popup_opened'); 
+    });
+
     elements.prepend (element);
     newplacePopup.classList.remove('newplace-popup_opened');
     newplacePopup.classList.add('newplace-popup_closed');
-    
 };
-
 formPlace.addEventListener('submit', formPlaceSubmitHandler);
 
 
-
+/*ставим лайки*/
 const likebuttonCollection = document.querySelectorAll('.element__like-button');
 
 for (let index = 0; index < likebuttonCollection.length; index++) {
@@ -167,6 +166,7 @@ for (let index = 0; index < likebuttonCollection.length; index++) {
         });
 }
 
+/*удаляем фотокарточки*/
 const removebuttonCollection = document.querySelectorAll('.element__remove-button');
 
 for (let index = 0; index < removebuttonCollection.length; index++) {
@@ -176,49 +176,28 @@ for (let index = 0; index < removebuttonCollection.length; index++) {
         const removeElement = removeEventTarget.parentElement;
         removeElement.remove();
         });
-}
+};
 
+
+/*открываем zoom*/
 const imagePopupCollection = document.querySelectorAll('.element__image');
 
 for (let index = 0; index < imagePopupCollection.length; index++) {
     imagePopupButton = imagePopupCollection[index];
     imagePopupButton.addEventListener('click', function (evt) {
-        const imagePopupTarget = evt.target; 
-        imageSrc = imagePopupTarget.src;
-        
-        necessaryImage = imagePopupsBlock.querySelector('img[src="' + imageSrc + '"]');
-        
-        necessaryContainer  = necessaryImage.parentElement;
-        necessaryImagePopup  = necessaryContainer.parentElement;
+        const imageTarget = evt.target;
+        imageContainer = imageTarget.parentElement;
+        imageSrc = imageTarget.src;
+        imageName = imageContainer.querySelector('.element__name').textContent;
 
-        necessaryImagePopup.classList.remove('image-popup_closed');
-        necessaryImagePopup.classList.add('image-popup_transit_open');
-        function open(){
-            necessaryImagePopup.classList.remove('image-popup_transit_open');
-            necessaryImagePopup.classList.add('image-popup_opened');  
-    }
-    setTimeout(open, 500);
-
+        const imagePopup = document.querySelector('.image-popup');
+        imagePopup.querySelector('.image-popup__image').src = imageSrc;
+        imagePopup.querySelector('.image-popup__title').textContent = imageName; 
+    
+        imagePopup.classList.remove('image-popup_closed');
+        imagePopup.classList.add('image-popup_opened'); 
     });
-}
+};
 
-const closeImageButtonCollection = document.querySelectorAll('.image-popup__close-button');
 
-for (let index = 0; index < closeImageButtonCollection.length; index++) {
-    closeImageButton = closeImageButtonCollection[index];
-    closeImageButton.addEventListener('click', function (evt) {
-        const closeImageTarget = evt.target; 
-        necessaryContainer  = closeImageTarget.parentElement;
-        necessaryImagePopup  = necessaryContainer.parentElement;
-        necessaryImagePopup.classList.remove('image-popup_opened');
-        necessaryImagePopup.classList.add('image-popup_closed');
 
-        necessaryImagePopup.classList.remove('image-popup_opened');
-        necessaryImagePopup.classList.add('image-popup_transit_close');
-        function close(){
-            necessaryImagePopup.classList.remove('image-popup_transit_close');
-            necessaryImagePopup.classList.add('image-popup_closed');  
-    }
-    setTimeout(close, 500);
-        });
-}
