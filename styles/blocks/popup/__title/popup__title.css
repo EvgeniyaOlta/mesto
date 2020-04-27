@@ -1,13 +1,8 @@
+@import url(./_main/popup__title_main.css);
+@import url(./_image/popup__title_image.css);
+
 .popup__title{
   font-family: Inter, Arial;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
-  height: 23px;
-  color: black;
-  margin-top: 34px;
-  margin-left: 36px;
-  margin-bottom: 54px;
 }  
 
 

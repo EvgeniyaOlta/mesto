@@ -1,4 +1,4 @@
-.newplace-popup__list{
+.popup__list_main{
   width: 358px;
   width: auto;
   display: flex;
@@ -10,10 +10,8 @@
 }  
 
 @media (max-width : 520px) {
-  .newplace-popup__list {
+  .popup__list_main {
     margin-left: 20px;
     margin-bottom: 36px;
   }
 } 
-
-

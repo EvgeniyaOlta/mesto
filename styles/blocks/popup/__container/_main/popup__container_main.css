@@ -1,8 +1,7 @@
-.newplace-popup__container {
+.popup__container_main {
   width: 430px;
   height: 330px;
   background-color: white;
-  display: flex;
   flex-direction: column;
   justify-content: start;
   position: relative;
@@ -10,9 +9,8 @@
 }
 
 @media (max-width : 520px) {
-  .newplace-popup__container {
+  .popup__container_main {
     width: 240px;
     height: 258px;
   }
 }  
-
