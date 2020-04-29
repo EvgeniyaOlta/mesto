@@ -1,8 +1,5 @@
-@import url(./_main/popup__container_main.css);
-@import url(./_image/popup__container_image.css);
-
 .popup__container {
-  display: flex;
-  position: relative;
+  position: relative; 
+  margin-top: 12.5vh;
 }
 

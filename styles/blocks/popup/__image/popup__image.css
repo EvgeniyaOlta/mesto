@@ -1,8 +1,9 @@
-@import url(./_main/popup__image_main.css);
-@import url(./_image/popup__image_image.css);
-
 .popup__image {
-  
+  display: block;
+  object-fit: contain;
+  overflow: hidden;
+  max-height: 75vh; 
+  max-width: 75vw;
 }
 
  

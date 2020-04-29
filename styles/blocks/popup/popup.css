@@ -1,14 +1,21 @@
 @import url(./__input/popup__input.css);
 @import url(./__title/popup__title.css);
+@import url(./__title/_for-image/popup__title_for-image.css);
 @import url(./__list/popup__list.css);
+@import url(./__list/_hidden/popup__list_hidden.css);
 @import url(./__image/popup__image.css);
+@import url(./__image/_hidden/popup__image_hidden.css);
 @import url(./__container/popup__container.css);
+@import url(./__container/_for-form/popup__container_for-form.css);
 @import url(./__save-button/popup__save-button.css);
 @import url(./__close-button/popup__close-button.css);
-@import url(./_opened/popup_opened.css);
-@import url(./_closed/popup_closed.css);
+
 
 .popup{
+  display: flex;
+  visibility:visible;
+  opacity: 1;
+  transition: opacity 0.5s, visibility 0s;
   position: fixed;
   top: 0px;
   left: 0px;

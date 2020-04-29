@@ -24,30 +24,56 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       
-      <section class="elements">
+      <section class="cards">
         <template id="card">
-          <article class="element">
-            <button class="element__remove-button" type="button"></button>
-            <img class="element__image">
-            <p class="element__name"></p>
-            <button class="element__like-button element__like-button_disactive" type="button"></button>
+          <article class="card">
+            <button class="card__remove-button" type="button"></button>
+            <img class="card__image">
+            <p class="card__name"></p>
+            <button class="card__like-button card__like-button_disactive" type="button"></button>
           </article>
         </template>
       </section>
 
-      <section class="popup popup_closed">
-        <form class="popup__container"> 
+      <section class="popup popup_closed"> 
+        <form class="popup__container popup__container_for-form">  
+          <button class="popup__close-button" type="button"></button> 
+          <img class="popup__image popup__image_hidden" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
+          <p class="popup__title">Редактировать профиль</p> 
+          <fieldset class="popup__list"> 
+            <input type="text" class="popup__input" name="name" value="Жак-Ив Кусто"> 
+            <input type="text" class="popup__input" name="description" value="Исследователь океана"> 
+            <button type="submit" class="popup__save-button">Сохранить</button> 
+          </fieldset> 
+        </form> 
+      </section> 
+ 
+      <section class="popup popup_newplace popup_closed"> 
+        <form class="popup__container popup__container_for-form">  
           <button class="popup__close-button" type="button"></button>
-          <p class="popup__title"></p>
-          <fieldset class="popup__list">
-            <input type="text" class="popup__input" name="name" value="">
-            <input type="text" class="popup__input" name="description" value="">
-            <button type="submit" class="popup__save-button"></button>
-          </fieldset>
-          <img class="popup__image" alt="" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg">
-        </form>
-      </section>
-
+          <img class="popup__image popup__image_hidden" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
+          <p class="popup__title">Новое место</p> 
+          <fieldset class="popup__list"> 
+            <input type="text" class="popup__input" name="placename" placeholder="Название" value=""> 
+            <input type="text" class="popup__input" name="link" placeholder="Ссылка на картинку" value=""> 
+            <button type="submit" class="popup__save-button">Создать</button> 
+          </fieldset> 
+        </form> 
+      </section> 
+    
+      <section class="popup popup_image popup_closed">
+        <form class="popup__container">  
+          <button class="popup__close-button" type="button"></button> 
+          <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt=""> 
+          <p class="popup__title popup__title_for-image"></p> 
+          <fieldset class="popup__list popup__list_hidden"> 
+            <input type="text" class="popup__input"> 
+            <input type="text" class="popup__input"> 
+            <button type="submit" class="popup__save-button">Создать</button> 
+          </fieldset> 
+        </form> 
+      </section> 
+ 
     </main>
     <footer class="footer">
       <p class="footer__copyright"> &copy; 2020 Mesto Russia</p>

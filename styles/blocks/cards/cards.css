@@ -1,4 +1,4 @@
-.elements {
+.cards {
   display: grid;
   width: 1000px;
   margin: auto;
@@ -9,14 +9,14 @@
 }
 
 @media (max-width : 1280px) {
-  .elements {
+  .cards {
     width: 882px;
     grid-gap: 18px;
   }
 }
 
 @media (max-width : 1023px) {
-  .elements {
+  .cards {
     width: 600px;
     margin-top: 36px;
     grid-gap: 18px;
@@ -24,13 +24,13 @@
 }
 
 @media (max-width : 767px) {
-  .elements {
+  .cards {
     grid-gap: 20px;
   }
 }
 
 @media (max-width : 650px) {
-  .elements {
+  .cards {
     width: 282px;
   }
 }

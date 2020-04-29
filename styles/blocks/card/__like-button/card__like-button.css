@@ -1,7 +1,7 @@
-@import url(./_active/element__like-button_active.css);
-@import url(./_disactive/element__like-button_disactive.css);
+@import url(./_active/card__like-button_active.css);
+@import url(./_disactive/card__like-button_disactive.css);
 
-.element__like-button{
+.card__like-button{
   position: relative;
   width: 20px;
   height: 18px;
@@ -14,7 +14,7 @@
   background-color: transparent;
 }
 
-.element__like-button:hover {
+.card__like-button:hover {
   opacity:0.5;
   cursor: pointer;
   transition: all 0.5s ease;

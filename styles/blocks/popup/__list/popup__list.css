@@ -1,8 +1,21 @@
-@import url(./_main/popup__list_main.css);
-@import url(./_image/popup__list_image.css);
-
 .popup__list{
-  
+  display: flex;
+  width: 358px;
+  width: auto;
+  flex-direction: column;
+  margin-left: 36px;
+  justify-content: start;
+  padding: 0px;
+  border-style: none;
 }  
+
+@media (max-width : 520px) {
+  .popup__list{
+    margin-left: 20px;
+    margin-bottom: 36px;
+  }
+}  
+}  
+
 
 
