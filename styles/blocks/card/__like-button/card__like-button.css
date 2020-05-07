@@ -1,7 +1,5 @@
-@import url(./_active/card__like-button_active.css);
-@import url(./_disactive/card__like-button_disactive.css);
-
 .card__like-button{
+  background-image: url(../../../../images/like.svg);
   position: relative;
   width: 20px;
   height: 18px;
