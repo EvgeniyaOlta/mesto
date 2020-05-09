@@ -6,14 +6,14 @@ const editButton = body.querySelector('.profile__edit-button');
 const popup = body.querySelector('.popup');
 const name = body.querySelector('.profile__name');
 const description = body.querySelector('.profile__description');
-const formPlace = body.querySelector('.popup__container');
+const form = body.querySelector('.popup__container');
 const nameInput = popup.querySelector('[name="name"]');
 const descriptionInput = popup.querySelector('[name="description"]');
 const closePopupButton = body.querySelector('.popup__close-button');
 
 const newPlacePopup = body.querySelector('.popup_newplace');
 const closeNewPlaceButton = newPlacePopup.querySelector('.popup__close-button');
-const placeFormPlace = newPlacePopup.querySelector('.popup__container');
+const placeForm = newPlacePopup.querySelector('.popup__container');
 const placeInput = newPlacePopup.querySelector('[name="placename"]');
 const linkInput = newPlacePopup.querySelector('[name="link"]');
 
@@ -125,7 +125,7 @@ function profileFormSubmitHandler(evt) {
   description.textContent= descriptionInput.value; 
   closeOpenPopup(popup);
 };
-formPlace.addEventListener('submit', profileFormSubmitHandler); 
+form.addEventListener('submit', profileFormSubmitHandler); 
 
 /*добавляем новую карточку*/
 function newPlaceFormSubmitHandler(evt) { 
@@ -140,4 +140,4 @@ function newPlaceFormSubmitHandler(evt) {
   linkInput.value = ''; 
   closeOpenPopup(newPlacePopup);
 };
-placeFormPlace.addEventListener('submit', newPlaceFormSubmitHandler); 
+placeForm.addEventListener('submit', newPlaceFormSubmitHandler); 

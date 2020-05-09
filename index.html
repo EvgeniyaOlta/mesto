@@ -36,26 +36,30 @@
       </section>
 
       <section class="popup"> 
-        <form class="popup__container popup__container_for-form">  
+        <form class="popup__container popup__container_for-form" novalidate>  
           <button class="popup__close-button" type="button"></button> 
           <img class="popup__image popup__image_hidden" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
           <p class="popup__title">Редактировать профиль</p> 
           <fieldset class="popup__list"> 
-            <input type="text" class="popup__input" name="name" value="Жак-Ив Кусто"> 
-            <input type="text" class="popup__input" name="description" value="Исследователь океана"> 
+            <input id="name-input" type="text" class="popup__input" name="name" value="Жак-Ив Кусто" pattern="[a-zA-Zа-яА-Я\s\-]+" required minlength="2" maxlength="40"> 
+            <span id="name-input-error" class="popup__input-error"></span>
+            <input id="description-input" type="text" class="popup__input" name="description" value="Исследователь океана" required minlength="2" maxlength="200"> 
+            <span id="description-input-error" class="popup__input-error"></span>
             <button type="submit" class="popup__save-button">Сохранить</button> 
           </fieldset> 
         </form> 
       </section> 
  
       <section class="popup popup_newplace"> 
-        <form class="popup__container popup__container_for-form">  
+        <form class="popup__container popup__container_for-form" novalidate>  
           <button class="popup__close-button" type="button"></button>
           <img class="popup__image popup__image_hidden" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
           <p class="popup__title">Новое место</p> 
           <fieldset class="popup__list"> 
-            <input type="text" class="popup__input" name="placename" placeholder="Название" value=""> 
-            <input type="text" class="popup__input" name="link" placeholder="Ссылка на картинку" value=""> 
+            <input id="place-input" type="text" class="popup__input" name="placename" placeholder="Название" value="" required minlength="1" maxlength="30"> 
+            <span id="place-input-error" class="popup__input-error"></span>
+            <input id="link-input" type="url" class="popup__input" name="link" placeholder="Ссылка на картинку" value="" required> 
+            <span id="link-input-error" class="popup__input-error"></span>
             <button type="submit" class="popup__save-button">Создать</button> 
           </fieldset> 
         </form> 
@@ -79,5 +83,6 @@
       <p class="footer__copyright"> &copy; 2020 Mesto Russia</p>
     </footer>
     <script src="./script.js"></script>
+    <script src="./validate.js"></script>
   </body>
 </html>

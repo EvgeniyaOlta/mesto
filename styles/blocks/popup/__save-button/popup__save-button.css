@@ -3,16 +3,18 @@
   height: 50.15px;
   margin: 0px;
   padding: 0px;
-  background-color: black;
+  background-color: white;
   font-family: Inter, Arial;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 18px;
   line-height: 22px;
   text-align: center;
-  color: white;
+  color: #C4C4C4;
   position: relative;
-  border-style: none;
+  border-style: solid;
+  border-color:  #C4C4C4;
   border-radius: 2px;
+  justify-self: end;
 }
 
 .popup__save-button:hover {

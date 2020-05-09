@@ -3,3 +3,6 @@
   margin-top: 12.5vh;
 }
 
+.popup__container:hover {
+  cursor: default;
+}

@@ -1,4 +1,7 @@
 @import url(./__input/popup__input.css);
+@import url(./__input/_with-error/popup__input_with-error.css);
+@import url(./__input-error/popup__input-error.css);
+@import url(./__input-error/_active/popup__input-error_active.css);
 @import url(./__title/popup__title.css);
 @import url(./__title/_for-image/popup__title_for-image.css);
 @import url(./__list/popup__list.css);
@@ -8,6 +11,7 @@
 @import url(./__container/popup__container.css);
 @import url(./__container/_for-form/popup__container_for-form.css);
 @import url(./__save-button/popup__save-button.css);
+@import url(./__save-button/_active/popup__save-button_active.css);
 @import url(./__close-button/popup__close-button.css);
 
 
@@ -27,5 +31,6 @@
   align-content: center;
 }
 
-
-
+.popup:hover {
+  cursor: pointer;
+}

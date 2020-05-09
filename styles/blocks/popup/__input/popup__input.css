@@ -1,12 +1,12 @@
 .popup__input{
   font-family: Inter, Arial;
   font-weight: 400;
+  max-height: 14px;
   font-size: 14px;
   line-height: 17px;
   width: 358px;
   height: auto;
   margin: 0px;
-  margin-bottom: 30px;
   padding: 0px;
   padding-bottom: 13px;
   border-style: none;
@@ -22,12 +22,13 @@
 }
 
 @media (max-width : 520px) {
-  .popup__input {
-    margin-bottom: 20px;
+  .popup__input { 
+    padding-bottom: 12px;
     width: 200px;
     font-size: 12px;
     line-height: 15px;
   }
+
   .popup__input::placeholder {
     font-size: 12px;
     line-height: 15px;
