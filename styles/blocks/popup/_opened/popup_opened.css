@@ -2,8 +2,7 @@
   display: flex;
   visibility:visible;
   opacity: 1;
-  transition: opacity 0.5s, visibility 0.3s;
-
+  transition: opacity 0.5s, visibility 0s;
 }
   
   
