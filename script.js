@@ -5,6 +5,8 @@ const body = document.querySelector('.root');
 const addButton = body.querySelector('.profile__add-button');
 const editButton = body.querySelector('.profile__edit-button');
 
+const cardsSection = document.querySelector('.cards');
+
 const popup = body.querySelector('.popup');
 const name = body.querySelector('.profile__name');
 const description = body.querySelector('.profile__description');
@@ -52,69 +54,74 @@ const сards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
-];
-
-function makeCard(item) {
-  const cardTemplate = document.querySelector('#card').content;
-  const card = cardTemplate.cloneNode(true);
-  card.querySelector('.card__image').src = item.link;
+]; 
+function makeCard(item) { 
+  const cardTemplate = document.querySelector('#card').content; 
+  const card = cardTemplate.cloneNode(true); 
+  card.querySelector('.card__image').src = item.link; 
   card.querySelector('.card__name').textContent = item.name;
-    
-  const likeButton = card.querySelector('.card__like-button');
-  function like() {
-    likeButton.classList.toggle('card__like-button_active');
-  };
-  likeButton.addEventListener('click', like);
-    
-  const removeButton = card.querySelector('.card__remove-button');
-  function removeCard () {
-    removeButton.closest('.card').remove();
-  };
-  removeButton.addEventListener('click', removeCard);
 
-  const imagePopupButton = card.querySelector('.card__image');
-  function zoom () {
-    closeOpenPopup(imagePopup);
-    imagePopupImage.src = item.link;
-    imagePopupTitle.textContent = item.name;
-  }
-  imagePopupButton.addEventListener('click', zoom);
+  return card; 
+}; 
 
-  return card;
-};
-
-сards.forEach(function(item){
-  const newCard = makeCard(item);
-  cardsBlock.append(newCard);
+сards.forEach(function(item){ 
+  const newCard = makeCard(item); 
+  cardsBlock.append(newCard); 
 });
+
+/*добавляем функционал карточкам*/
+function like() { 
+  if (event.target.classList.contains('card__like-button')) {
+    event.target.classList.toggle('card__like-button_active')} 
+}; 
+cardsSection.addEventListener('click', like);
+
+function zoom () { 
+  if (event.target.classList.contains('card__image')) {
+    const cardForZoom = event.target.closest('.card');
+    const titleForZoom = cardForZoom.querySelector('.card__name');
+    imagePopupImage.src = event.target.src; 
+    imagePopupTitle.textContent = titleForZoom.textContent;
+    closeOpenPopup(imagePopup); 
+  }
+}; 
+cardsSection.addEventListener('click', zoom);
+
+function removeCard () { 
+  if (event.target.classList.contains('card__remove-button')) {
+    console.log(event.target);
+    event.target.closest('.card').remove(); 
+  }
+}; 
+cardsSection.addEventListener('click', removeCard);
   
 /*открываем/закрываем popup*/
+function escClose(event) { 
+  if (event.keyCode === 27){ 
+    const sectionToClose = document.querySelector('.popup_opened');
+    closeOpenPopup(sectionToClose);
+  } 
+}
+
 function closeOpenPopup(section) { 
   section.classList.toggle('popup_opened'); 
   if (section.classList.contains('popup_opened')) {
     document.addEventListener('keyup', escClose)
   }
+  else {document.removeEventListener('keyup', escClose)}
 };
-
-function escClose(event) { 
-  if (event.keyCode === 27){ 
-    const sectionToClose = document.querySelector('.popup_opened');
-    sectionToClose.classList.toggle('popup_opened');
-    document.removeEventListener('keyup', escClose)
-  } 
-}
-
 editButton.addEventListener('click', () => closeOpenPopup(popup));
 addButton.addEventListener('click', () => closeOpenPopup(newPlacePopup));
 closePopupButton.addEventListener('click', () => closeOpenPopup(popup));
 closeNewPlaceButton.addEventListener('click', () => closeOpenPopup(newPlacePopup));
 closeImageButton.addEventListener('click', () => closeOpenPopup(imagePopup));
 
-body.addEventListener('click', function (evt) { 
-  if (evt.target.classList.contains('popup')) { 
-    closeOpenPopup(evt.target); 
+function overlayClose(event) { 
+  if (event.target.classList.contains('popup')) { 
+    closeOpenPopup(event.target); 
   } 
-}); 
+}
+body.addEventListener('click', overlayClose); 
 
 /*редактируем данные профиля*/
 function profileFormSubmitHandler(evt) { 
@@ -132,8 +139,8 @@ function newPlaceFormSubmitHandler(evt) {
     name: placeInput.value,
     link: linkInput.value
   };
-  const newCard = makeCard(item);
-  cardsBlock.prepend(newCard);
+  const newCard = makeCard(item); 
+  cardsBlock.prepend(newCard); 
   placeInput.value =''; 
   linkInput.value = ''; 
   closeOpenPopup(newPlacePopup);
