@@ -53,6 +53,11 @@ const setEventListeners = (formElement, {inputSelector, submitButtonSelector, ..
       isValid(formElement, inputElement, newData); 
       toggleButtonState(inputList, buttonElement, newData); 
     });
+    const inputPopup = inputElement.closest('.popup');
+    const closeButton = inputPopup.querySelector('.popup__close-button')
+    closeButton.addEventListener('click', function() { 
+      hideInputError(formElement, inputElement, newData); 
+    })
   }); 
 }; 
  

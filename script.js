@@ -5,7 +5,7 @@ const body = document.querySelector('.root');
 const addButton = body.querySelector('.profile__add-button');
 const editButton = body.querySelector('.profile__edit-button');
 
-const cardsSection = document.querySelector('.cards');
+const cardTemplate = document.querySelector('#card').content;
 
 const popup = body.querySelector('.popup');
 const name = body.querySelector('.profile__name');
@@ -55,12 +55,42 @@ const сards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ]; 
-function makeCard(item) { 
-  const cardTemplate = document.querySelector('#card').content; 
+
+function like() { 
+  event.target.classList.toggle('card__like-button_active')
+}; 
+function zoom () { 
+  const cardForZoom = event.target.closest('.card');
+  const titleForZoom = cardForZoom.querySelector('.card__name');
+  imagePopupImage.src = event.target.src; 
+  imagePopupTitle.textContent = titleForZoom.textContent;
+  closeOpenPopup(imagePopup); 
+}; 
+function removeCard (buttonForLike, buttonForZoom) { 
+  console.log('ура')
+  buttonForLike.removeEventListener('click', like);
+  buttonForZoom.removeEventListener('click', zoom); 
+  event.target.closest('.card').remove();
+}; 
+
+function makeCard(item) {  
   const card = cardTemplate.cloneNode(true); 
   card.querySelector('.card__image').src = item.link; 
-  card.querySelector('.card__name').textContent = item.name;
+  card.querySelector('.card__name').textContent = item.name; 
 
+  const likeButton = card.querySelector('.card__like-button'); 
+  likeButton.addEventListener('click', like);
+ 
+  const imagePopupButton = card.querySelector('.card__image'); 
+  imagePopupButton.addEventListener('click', zoom); 
+
+  const removeButton = card.querySelector('.card__remove-button');
+  const handleRemove = () => {
+    removeCard(likeButton, imagePopupButton);
+    removeButton.removeEventListener('click', handleRemove)
+  } 
+  removeButton.addEventListener('click', handleRemove);
+  
   return card; 
 }; 
 
@@ -68,32 +98,6 @@ function makeCard(item) {
   const newCard = makeCard(item); 
   cardsBlock.append(newCard); 
 });
-
-/*добавляем функционал карточкам*/
-function like() { 
-  if (event.target.classList.contains('card__like-button')) {
-    event.target.classList.toggle('card__like-button_active')} 
-}; 
-cardsSection.addEventListener('click', like);
-
-function zoom () { 
-  if (event.target.classList.contains('card__image')) {
-    const cardForZoom = event.target.closest('.card');
-    const titleForZoom = cardForZoom.querySelector('.card__name');
-    imagePopupImage.src = event.target.src; 
-    imagePopupTitle.textContent = titleForZoom.textContent;
-    closeOpenPopup(imagePopup); 
-  }
-}; 
-cardsSection.addEventListener('click', zoom);
-
-function removeCard () { 
-  if (event.target.classList.contains('card__remove-button')) {
-    console.log(event.target);
-    event.target.closest('.card').remove(); 
-  }
-}; 
-cardsSection.addEventListener('click', removeCard);
   
 /*открываем/закрываем popup*/
 function escClose(event) { 
