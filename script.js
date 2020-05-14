@@ -66,8 +66,7 @@ function zoom () {
   imagePopupTitle.textContent = titleForZoom.textContent;
   closeOpenPopup(imagePopup); 
 }; 
-function removeCard (buttonForLike, buttonForZoom) { 
-  console.log('ура')
+function removeCard (buttonForLike, buttonForZoom, event) { 
   buttonForLike.removeEventListener('click', like);
   buttonForZoom.removeEventListener('click', zoom); 
   event.target.closest('.card').remove();
@@ -75,19 +74,19 @@ function removeCard (buttonForLike, buttonForZoom) {
 
 function makeCard(item) {  
   const card = cardTemplate.cloneNode(true); 
-  card.querySelector('.card__image').src = item.link; 
+  const imagePopupButton = card.querySelector('.card__image'); 
+  imagePopupButton.src = item.link; 
   card.querySelector('.card__name').textContent = item.name; 
 
   const likeButton = card.querySelector('.card__like-button'); 
   likeButton.addEventListener('click', like);
  
-  const imagePopupButton = card.querySelector('.card__image'); 
   imagePopupButton.addEventListener('click', zoom); 
 
   const removeButton = card.querySelector('.card__remove-button');
-  const handleRemove = () => {
-    removeCard(likeButton, imagePopupButton);
-    removeButton.removeEventListener('click', handleRemove)
+  const handleRemove = (event) => {
+    removeButton.removeEventListener('click', handleRemove);
+    removeCard(likeButton, imagePopupButton, event);
   } 
   removeButton.addEventListener('click', handleRemove);
   
@@ -107,12 +106,21 @@ function escClose(event) {
   } 
 }
 
+function correctInputs() {
+  nameInput.value = name.textContent; 
+  descriptionInput.value = description.textContent;  
+  placeInput.value =''; 
+  linkInput.value = ''; 
+}
+
 function closeOpenPopup(section) { 
+  correctInputs();
   section.classList.toggle('popup_opened'); 
   if (section.classList.contains('popup_opened')) {
-    document.addEventListener('keyup', escClose)
+    document.addEventListener('keyup', escClose);
   }
-  else {document.removeEventListener('keyup', escClose)}
+  else {document.removeEventListener('keyup', escClose)
+  }
 };
 editButton.addEventListener('click', () => closeOpenPopup(popup));
 addButton.addEventListener('click', () => closeOpenPopup(newPlacePopup));

@@ -1,6 +1,6 @@
 .popup__container {
   position: relative; 
-  margin-top: 12.5vh;
+  height: fit-content;
 }
 
 .popup__container:hover {

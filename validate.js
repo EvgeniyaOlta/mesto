@@ -45,7 +45,7 @@ const toggleButtonState = (inputList, buttonElement, {activeButtonClass}) => {
  
 /*Обход всех инпутов формы*/ 
 const setEventListeners = (formElement, {inputSelector, submitButtonSelector, ...newData}) => {  
-    const inputList = Array.from(formElement.querySelectorAll(inputSelector)); 
+  const inputList = Array.from(formElement.querySelectorAll(inputSelector)); 
   const buttonElement = formElement.querySelector(submitButtonSelector); 
   toggleButtonState(inputList, buttonElement, newData); 
   inputList.forEach((inputElement) => { 
@@ -54,10 +54,12 @@ const setEventListeners = (formElement, {inputSelector, submitButtonSelector, ..
       toggleButtonState(inputList, buttonElement, newData); 
     });
     const inputPopup = inputElement.closest('.popup');
-    const closeButton = inputPopup.querySelector('.popup__close-button')
-    closeButton.addEventListener('click', function() { 
-      hideInputError(formElement, inputElement, newData); 
-    })
+    const closeButton = inputPopup.querySelector('.popup__close-button');
+    if (!inputPopup.classList.contains('popup_image')){ 
+      closeButton.addEventListener('click', function() { 
+        hideInputError(formElement, inputElement, newData); 
+      })
+    }
   }); 
 }; 
  
@@ -74,7 +76,7 @@ const enableValidation = ({formSelector, ...data}) => {
 
 /*вызов функции enableValidation*/
 enableValidation({
-  formSelector: '.popup',
+  formSelector: '.popup__container',
   inputSelector: '.popup__input',
   inputErrorClass: 'popup__input_with-error',
   errorClass: 'popup__input-error_active',

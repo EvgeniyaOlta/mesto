@@ -5,7 +5,7 @@
   line-height: 56px;
   margin: 0px;
   margin-top: 18px;
-  height: auto;
+  height: min-content;
   text-align: end;
   overflow: hidden;
   text-overflow: ellipsis;
