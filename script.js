@@ -1,11 +1,14 @@
 'use strict';
 
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+
 const body = document.querySelector('.root');
 
 const addButton = body.querySelector('.profile__add-button');
 const editButton = body.querySelector('.profile__edit-button');
 
-const cardTemplate = document.querySelector('#card').content;
+const cardsBlock = body.querySelector('.cards');
 
 const popup = body.querySelector('.popup');
 const name = body.querySelector('.profile__name');
@@ -21,14 +24,11 @@ const placeForm = newPlacePopup.querySelector('.popup__container');
 const placeInput = newPlacePopup.querySelector('[name="placename"]');
 const linkInput = newPlacePopup.querySelector('[name="link"]');
 
-const imagePopup = body.querySelector('.popup_image');
+export const imagePopup = body.querySelector('.popup_image');
 const closeImageButton = imagePopup.querySelector('.popup__close-button');
-const imagePopupTitle= imagePopup.querySelector('.popup__title'); 
-const imagePopupImage= imagePopup.querySelector('.popup__image'); 
-const cardsBlock = document.querySelector('.cards');
+export const imagePopupTitle= imagePopup.querySelector('.popup__title'); 
+export const imagePopupImage= imagePopup.querySelector('.popup__image'); 
 
-
-/*создаем карточки "из коробки"*/
 const сards = [ 
   {
     name: 'Архыз',
@@ -56,48 +56,6 @@ const сards = [
   }
 ]; 
 
-function like() { 
-  event.target.classList.toggle('card__like-button_active')
-}; 
-function zoom () { 
-  const cardForZoom = event.target.closest('.card');
-  const titleForZoom = cardForZoom.querySelector('.card__name');
-  imagePopupImage.src = event.target.src; 
-  imagePopupTitle.textContent = titleForZoom.textContent;
-  closeOpenPopup(imagePopup); 
-}; 
-function removeCard (buttonForLike, buttonForZoom, event) { 
-  buttonForLike.removeEventListener('click', like);
-  buttonForZoom.removeEventListener('click', zoom); 
-  event.target.closest('.card').remove();
-}; 
-
-function makeCard(item) {  
-  const card = cardTemplate.cloneNode(true); 
-  const imagePopupButton = card.querySelector('.card__image'); 
-  imagePopupButton.src = item.link; 
-  card.querySelector('.card__name').textContent = item.name; 
-
-  const likeButton = card.querySelector('.card__like-button'); 
-  likeButton.addEventListener('click', like);
- 
-  imagePopupButton.addEventListener('click', zoom); 
-
-  const removeButton = card.querySelector('.card__remove-button');
-  const handleRemove = (event) => {
-    removeButton.removeEventListener('click', handleRemove);
-    removeCard(likeButton, imagePopupButton, event);
-  } 
-  removeButton.addEventListener('click', handleRemove);
-  
-  return card; 
-}; 
-
-сards.forEach(function(item){ 
-  const newCard = makeCard(item); 
-  cardsBlock.append(newCard); 
-});
-  
 /*открываем/закрываем popup*/
 function escClose(event) { 
   if (event.keyCode === 27){ 
@@ -105,15 +63,13 @@ function escClose(event) {
     closeOpenPopup(sectionToClose);
   } 
 }
-
 function correctInputs() {
   nameInput.value = name.textContent; 
   descriptionInput.value = description.textContent;  
   placeInput.value =''; 
   linkInput.value = ''; 
 }
-
-function closeOpenPopup(section) { 
+export function closeOpenPopup(section) { 
   correctInputs();
   section.classList.toggle('popup_opened'); 
   if (section.classList.contains('popup_opened')) {
@@ -127,13 +83,20 @@ addButton.addEventListener('click', () => closeOpenPopup(newPlacePopup));
 closePopupButton.addEventListener('click', () => closeOpenPopup(popup));
 closeNewPlaceButton.addEventListener('click', () => closeOpenPopup(newPlacePopup));
 closeImageButton.addEventListener('click', () => closeOpenPopup(imagePopup));
-
 function overlayClose(event) { 
   if (event.target.classList.contains('popup')) { 
     closeOpenPopup(event.target); 
   } 
 }
 body.addEventListener('click', overlayClose); 
+
+/*создаем карточки "из коробки"*/
+сards.forEach((item) => {
+  const card = new Card(item, '.card-template');
+  const newCard = card.generateCard();
+
+  document.querySelector('.cards').append(newCard);
+});
 
 /*редактируем данные профиля*/
 function profileFormSubmitHandler(evt) { 
@@ -151,10 +114,24 @@ function newPlaceFormSubmitHandler(evt) {
     name: placeInput.value,
     link: linkInput.value
   };
-  const newCard = makeCard(item); 
-  cardsBlock.prepend(newCard); 
+  const card = new Card(item, '.card-template');
+  const addNewCard = card.generateCard();
+  cardsBlock.prepend(addNewCard); 
   placeInput.value =''; 
   linkInput.value = ''; 
   closeOpenPopup(newPlacePopup);
 };
 placeForm.addEventListener('submit', newPlaceFormSubmitHandler); 
+
+/*вызов функции enableValidation*/
+const formList = Array.from(document.querySelectorAll('.popup__container'));  
+formList.forEach((form) => {
+  const valid = new FormValidator ({
+    inputSelector: '.popup__input', 
+    inputErrorClass: 'popup__input_with-error', 
+    errorClass: 'popup__input-error_active', 
+    submitButtonSelector: '.popup__save-button', 
+    activeButtonClass: 'popup__save-button_active' 
+  }, form)
+  valid.enableValidation();
+});
