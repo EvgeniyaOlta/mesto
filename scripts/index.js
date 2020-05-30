@@ -2,6 +2,7 @@
 
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
+import {cardsArray} from './cardsArray.js';
 
 const body = document.querySelector('.root');
 
@@ -24,41 +25,12 @@ const placeForm = newPlacePopup.querySelector('.popup__container');
 const placeInput = newPlacePopup.querySelector('[name="placename"]');
 const linkInput = newPlacePopup.querySelector('[name="link"]');
 
-export const imagePopup = body.querySelector('.popup_image');
+const imagePopup = body.querySelector('.popup_image');
 const closeImageButton = imagePopup.querySelector('.popup__close-button');
-export const imagePopupTitle= imagePopup.querySelector('.popup__title'); 
-export const imagePopupImage= imagePopup.querySelector('.popup__image'); 
-
-const сards = [ 
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-]; 
 
 /*открываем/закрываем popup*/
 function escClose(event) { 
-  if (event.keyCode === 27){ 
+  if (event.key === 'Escape'){ 
     const sectionToClose = document.querySelector('.popup_opened');
     closeOpenPopup(sectionToClose);
   } 
@@ -69,7 +41,7 @@ function correctInputs() {
   placeInput.value =''; 
   linkInput.value = ''; 
 }
-export function closeOpenPopup(section) { 
+function closeOpenPopup(section) { 
   correctInputs();
   section.classList.toggle('popup_opened'); 
   if (section.classList.contains('popup_opened')) {
@@ -91,11 +63,11 @@ function overlayClose(event) {
 body.addEventListener('click', overlayClose); 
 
 /*создаем карточки "из коробки"*/
-сards.forEach((item) => {
+cardsArray.forEach((item) => {
   const card = new Card(item, '.card-template');
-  const newCard = card.generateCard();
+  const cardElement = card.generateCard();
 
-  document.querySelector('.cards').append(newCard);
+  cardsBlock.append(cardElement);
 });
 
 /*редактируем данные профиля*/
@@ -124,7 +96,7 @@ function newPlaceFormSubmitHandler(evt) {
 placeForm.addEventListener('submit', newPlaceFormSubmitHandler); 
 
 /*вызов функции enableValidation*/
-const formList = Array.from(document.querySelectorAll('.popup__container'));  
+const formList = Array.from(document.querySelectorAll('.popup__container_for-form'));  
 formList.forEach((form) => {
   const valid = new FormValidator ({
     inputSelector: '.popup__input', 

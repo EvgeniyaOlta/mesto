@@ -1,14 +1,11 @@
 'use strict';
 
-import {imagePopupImage, imagePopupTitle, imagePopup, closeOpenPopup} from './script.js';
-
 export class Card {
   constructor(data, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
   };
-
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
@@ -23,10 +20,29 @@ export class Card {
     this._element.querySelector('.card__like-button').classList.toggle('card__like-button_active')
   };
 
+  _imagePopup = document.querySelector('.popup_image');
+  _imagePopupTitle= this._imagePopup.querySelector('.popup__title'); 
+  _imagePopupImage= this._imagePopup.querySelector('.popup__image'); 
+
+  _escClose(event) { 
+    if (event.key === 'Escape'){
+      this._closeOpenPopup();
+    } 
+  }
+
+  _closeOpenPopup() { 
+    this._imagePopup.classList.toggle('popup_opened'); 
+    if (this._imagePopup.classList.contains('popup_opened')) {
+      document.addEventListener('keyup', () => {
+        this._escClose(event);
+      });
+    }
+  };
+
   _zoom() { 
-    imagePopupImage.src = this._link; 
-    imagePopupTitle.textContent = this._name;
-    closeOpenPopup(imagePopup); 
+    this._imagePopupImage.src = this._link; 
+    this._imagePopupTitle.textContent = this._name;
+    this._closeOpenPopup(); 
   };
   
   _removeCard() { 

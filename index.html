@@ -3,7 +3,7 @@
     <head> 
       <meta charset="UTF-8"> 
       <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-      <link rel="stylesheet" href="./styles/style.css"> 
+      <link rel="stylesheet" href="./styles/index.css"> 
       <title>Mesto</title>
     </head> 
   <body class="root">
@@ -35,7 +35,7 @@
         </template>
       </section>
 
-      <section class="popup popup_profile"> 
+      <section class="popup popup-with-form popup_profile"> 
         <form class="popup__container popup__container_for-form" novalidate>  
           <button class="popup__close-button" type="button"></button> 
           <img class="popup__image popup__image_hidden" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
@@ -50,7 +50,7 @@
         </form> 
       </section> 
  
-      <section class="popup popup_newplace"> 
+      <section class="popup popup-with-form popup_newplace"> 
         <form class="popup__container popup__container_for-form" novalidate>  
           <button class="popup__close-button" type="button"></button>
           <img class="popup__image popup__image_hidden" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
@@ -66,24 +66,20 @@
       </section> 
     
       <section class="popup popup_image">
-        <form class="popup__container">  
+        <div class="popup__container">  
           <button class="popup__close-button" type="button"></button> 
           <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt=""> 
           <p class="popup__title popup__title_for-image"></p> 
-          <fieldset class="popup__list popup__list_hidden"> 
-            <input type="text" class="popup__input"> 
-            <input type="text" class="popup__input"> 
-            <button type="submit" class="popup__save-button">Создать</button> 
-          </fieldset> 
-        </form> 
+        </div> 
       </section> 
  
     </main>
     <footer class="footer">
       <p class="footer__copyright"> &copy; 2020 Mesto Russia</p>
     </footer>
-    <script type="module" src="./script.js"></script>
-    <script type="module" src="./Card.js"></script>
-    <script type="module" src="./FormValidator.js"></script>
+    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/Card.js"></script>
+    <script type="module" src="./scripts/FormValidator.js"></script>
+    <script type="module" src="./scripts/cardsArray.js"></script>
   </body>
 </html>

@@ -56,13 +56,11 @@ export class FormValidator {
         this._isValid(inputElement); 
         this._toggleButtonState(inputList, buttonElement); 
       });
-      const inputPopup = inputElement.closest('.popup');
+      const inputPopup = inputElement.closest('.popup-with-form');
       const closeButton = inputPopup.querySelector('.popup__close-button');
-      if (!inputPopup.classList.contains('popup_image')){ 
-        closeButton.addEventListener('click', () => { 
+      closeButton.addEventListener('click', () => { 
           this._hideInputError(inputElement); 
-        })
-      }
+      })
     }); 
   }; 
   /*Запуск процесса валидации*/ 
