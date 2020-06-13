@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "Вторая работа в рамках курса \"Базовый JavaScript и работа с браузером\".",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvgeniyaOlta/mesto.git"
+  },
+  "author": "Olta Evgeniya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EvgeniyaOlta/mesto/issues"
+  },
+  "homepage": "https://github.com/EvgeniyaOlta/mesto#readme"
+}

@@ -1,9 +1,9 @@
 'use strict';
 
 export class Card {
-  constructor(data, cardSelector) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor({name, link}, cardSelector) {
+    this._name = name;
+    this._link = link;
     this._cardSelector = cardSelector;
   };
   _getTemplate() {
