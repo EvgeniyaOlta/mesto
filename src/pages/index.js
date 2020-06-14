@@ -1,5 +1,5 @@
 'use strict';
-
+ 
 import {Card} from '../components/Card.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {cardsArray} from '../utils/constants.js';
@@ -10,6 +10,8 @@ import {UserInfo} from '../components/UserInfo.js';
 import {addButton} from '../utils/constants.js';
 import {editButton} from '../utils/constants.js';
 import {cardsBlockSelector} from '../utils/constants.js';
+
+import '../styles/index.css';
 
 export const userInfo = new UserInfo({
   nameSelector: '.profile__name',

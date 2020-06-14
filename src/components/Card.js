@@ -20,7 +20,7 @@ export class Card {
     this._element.querySelector('.card__like-button').classList.toggle('card__like-button_active')
   };
 
-  _imagePopup = document.querySelector('.popup_image');
+  _imagePopup= document.querySelector('.popup_image');
   _imagePopupTitle= this._imagePopup.querySelector('.popup__title'); 
   _imagePopupImage= this._imagePopup.querySelector('.popup__image'); 
 
