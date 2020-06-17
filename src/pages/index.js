@@ -11,9 +11,11 @@ import {addButton} from '../utils/constants.js';
 import {editButton} from '../utils/constants.js';
 import {cardsBlockSelector} from '../utils/constants.js';
 
-import '../styles/index.css';
+import './index.css';
 
-export const userInfo = new UserInfo({
+const generateCard = data => new Card(data, '#card', ({name, link}) => imagePopup.open(name, link)).generateCard();
+
+const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   descriptionSelector: '.profile__description'
 });
@@ -33,18 +35,12 @@ const editInfoPopup = new PopupWithForm(
 
 const addPhotoPopup = new PopupWithForm(
   '.popup_newplace',
-  formData => {
-    const card = new Card(formData, '#card').generateCard();
-    cardList.addItem(card);
-  }
+  formData => cardList.addItem(generateCard(formData))
 );
 
 const cardList = new Section({
   items: cardsArray,
-  renderer: item => {
-    const card = new Card(item, '#card').generateCard();
-    cardList.addItem(card);
-  }
+  renderer: item => cardList.addItem(generateCard(item))
 }, cardsBlockSelector);
 cardList.renderItems();
 

@@ -1,10 +1,11 @@
 'use strict';
 
 export class Card {
-  constructor({name, link}, cardSelector) {
-    this._name = name;
+  constructor({name, link}, cardSelector, handleCardClick) {
+    this._name = name
     this._link = link;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   };
   _getTemplate() {
     const cardElement = document
@@ -54,9 +55,11 @@ export class Card {
       this._like();
     }); 
     
-    this._element.querySelector('.card__image').addEventListener('click', () => {
-      this._zoom();
-    }); 
+    this._element.querySelector('.card__image').addEventListener('click', () => this._handleCardClick({
+      name: this._name,
+      link: this._link
+    }));
+
     this._element.querySelector('.card__remove-button').addEventListener('click', () => {
       this._removeCard(); 
     }); 

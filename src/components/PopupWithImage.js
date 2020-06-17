@@ -9,10 +9,10 @@ export class PopupWithImage extends Popup {
     this._title = this._popup.querySelector('.popup__title');
   }
 
-  open(evt) {
-    this._image.src = evt.currentTarget.firstElementChild.src;
-    this._image.alt = evt.currentTarget.firstElementChild.alt;
-    this._title.textContent = evt.currentTarget.firstElementChild.alt;
+  open(name, link) {
+    this._image.src = link;
+    this._image.alt = name;
+    this._title.textContent = name;
     super.open();
   }
 }

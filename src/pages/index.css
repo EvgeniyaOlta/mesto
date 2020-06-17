@@ -1,0 +1,10 @@
+@import url(../styles/vendor/normalize.css);
+@import url(../styles/blocks/root/root.css);
+@import url(../fonts/Inter/inter.css);
+@import url(../styles/blocks/header/header.css);
+@import url(../styles/blocks/profile/profile.css);
+@import url(../styles/blocks/cards/cards.css);
+@import url(../styles/blocks/card/card.css);
+@import url(../styles/blocks/footer/footer.css);
+@import url(../styles/blocks/popup/popup.css);
+@import url(../styles/blocks/popup/_opened/popup_opened.css);
