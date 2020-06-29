@@ -1,24 +1,40 @@
 'use strict';
 
 export class Card {
-  constructor({name, link}, cardSelector, handleCardClick) {
-    this._name = name
+  constructor({name, link, likes, _id, owner}, cardSelector, handleCardClick, removePopup, api) {
+    this._name = name;
     this._link = link;
+    this._api = api;
+    this._idCard = _id;
+    this._likes = likes;
+    this._owner = owner;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._removePopup = removePopup;
+    this._removeButton = document.querySelector('.popup__save-button_for-remove')
   };
+
   _getTemplate() {
     const cardElement = document
       .querySelector(this._cardSelector)
       .content
       .querySelector('.card')
       .cloneNode(true);
-
     return cardElement;
   };
 
   _like() { 
     this._element.querySelector('.card__like-button').classList.toggle('card__like-button_active')
+    if (this._element.querySelector('.card__like-button').classList.contains('card__like-button_active')) {
+      this._api.putLike(this._idCard)
+      .then((card) => {
+        this._element.querySelector('.card__like-amount').textContent = card.likes.length;
+      })
+    }
+     else {this._api.deleteLike(this._idCard)
+      .then((card) => {
+        this._element.querySelector('.card__like-amount').textContent = card.likes.length;
+      })}
   };
 
   _imagePopup= document.querySelector('.popup_image');
@@ -40,14 +56,16 @@ export class Card {
     }
   };
 
-  _zoom() { 
-    this._imagePopupImage.src = this._link; 
-    this._imagePopupTitle.textContent = this._name;
-    this._closeOpenPopup(); 
-  };
-  
-  _removeCard() { 
+  _removeCard = () => { 
+    this._api.deleteCard(this._idCard)
     this._element.remove();
+    this._removePopup.close();
+    this._removeButton.removeEventListener('click', this._removeCard)
+  }; 
+
+  _openRemovePopup() { 
+    this._removePopup.open();
+    this._removeButton.addEventListener('click', this._removeCard)
   }; 
   
   _setEventListeners() {
@@ -61,17 +79,28 @@ export class Card {
     }));
 
     this._element.querySelector('.card__remove-button').addEventListener('click', () => {
-      this._removeCard(); 
+      this._openRemovePopup(); 
     }); 
   };
 
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
-
+    //this._likes.forEach((item) => {
+    //  if (item._id = 'af3243f786a84193004a00f7'){
+    //    this._element.querySelector('.card__like-button').classList.toggle('card__like-button_active')
+    //  }
+    //  })
+    this._element.querySelector('.card__like-amount').textContent = this._likes.length;
+    if (this._owner._id === 'af3243f786a84193004a00f7')
+    {this._element.querySelector('.card__remove-button').classList.add('card__remove-button_active')}
     this._element.querySelector('.card__image').src = this._link;
-    this._element.querySelector('.card__name').textContent = this._name;
-
+    this._element.querySelector('.card__name').textContent = this._name
     return this._element;
   }
 }
+    
+
+    
+  
+

@@ -38,7 +38,14 @@ export class PopupWithForm extends Popup {
       this._handleFormSubmit(this._getInputValues());
       this.close();
       this._form.reset();
-    });
+    })
+  }
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._form.querySelector('.popup__save-button').textContent = 'Сохранение...'
+    } else {
+      this._form.querySelector('.popup__save-button').textContent = 'Сохранить'
+    }
   }
 
   open() {

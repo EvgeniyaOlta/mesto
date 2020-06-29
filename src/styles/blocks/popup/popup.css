@@ -4,14 +4,18 @@
 @import url(./__input-error/_active/popup__input-error_active.css);
 @import url(./__title/popup__title.css);
 @import url(./__title/_for-image/popup__title_for-image.css);
+@import url(./__title/_for-avatar/popup__title_for-avatar.css);
 @import url(./__list/popup__list.css);
 @import url(./__list/_hidden/popup__list_hidden.css);
 @import url(./__image/popup__image.css);
 @import url(./__image/_hidden/popup__image_hidden.css);
 @import url(./__container/popup__container.css);
 @import url(./__container/_for-form/popup__container_for-form.css);
+@import url(./__container/_for-remove/popup__container_for-remove.css);
+@import url(./__container/_for-avatar/popup__container_for-avatar.css);
 @import url(./__save-button/popup__save-button.css);
 @import url(./__save-button/_active/popup__save-button_active.css);
+@import url(./__save-button/_for-remove/popup__save-button_for-remove.css);
 @import url(./__close-button/popup__close-button.css);
 
 
