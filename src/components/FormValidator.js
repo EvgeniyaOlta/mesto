@@ -1,5 +1,3 @@
-'use strict';
-
 export class FormValidator {
   constructor(data, formElement) {
     this._inputSelector = data.inputSelector;
@@ -70,6 +68,30 @@ export class FormValidator {
     }); 
     this._setEventListeners();
   }; 
+
+  //Очищение ошибок
+  
+  clearErrors() {
+    this._inputList = this._formElement.querySelectorAll(this._inputSelector);
+    this._inputList.forEach(input => {
+      if (input.classList.contains('popup__input-error')) {
+        input.classList.remove('popup__input-error');
+        const errorElement = this._formElement.querySelector(`#${input.id}-error`);
+        errorElement.textContent = '';
+        errorElement.classList.remove('popup__input-error_visible');
+        }
+    });
+    this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
+    this._submitButton.classList.add('popup__save-button_disabled');
+    this._submitButton.setAttribute('disabled', true);
+  }
 }
 
+/*
+  inputSelector: '.popup__input', 
+  inputErrorClass: 'popup__input_with-error', 
+  errorClass: 'popup__input-error_active', 
+  submitButtonSelector: '.popup__save-button', 
+  activeButtonClass: 'popup__save-button_active' 
+*/
 

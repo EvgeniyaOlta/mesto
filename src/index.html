@@ -41,9 +41,8 @@
       </section>
 
       <section class="popup popup-with-form popup_profile"> 
-        <form class="popup__container popup__container_for-form" novalidate>  
+        <form class="popup__container popup__container_for-form popup__container_for-profile" novalidate>  
           <button class="popup__close-button" type="button"></button> 
-          <img class="popup__image popup__image_hidden" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
           <p class="popup__title">Редактировать профиль</p> 
           <fieldset class="popup__list"> 
             <input id="name-input" type="text" class="popup__input" name="name" value="Жак-Ив Кусто" pattern="[a-zA-Zа-яА-Я\s\-]+" required minlength="2" maxlength="40"> 
@@ -56,9 +55,8 @@
       </section> 
  
       <section class="popup popup-with-form popup_newplace"> 
-        <form class="popup__container popup__container_for-form" novalidate>  
+        <form class="popup__container popup__container_for-form popup__container_for-newPlace" novalidate>  
           <button class="popup__close-button" type="button"></button>
-          <img class="popup__image popup__image_hidden" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="">
           <p class="popup__title">Новое место</p> 
           <fieldset class="popup__list"> 
             <input id="place-input" type="text" class="popup__input" name="name" placeholder="Название" value="" required minlength="1" maxlength="30"> 
@@ -69,6 +67,7 @@
           </fieldset> 
         </form> 
       </section> 
+
 
       <section class="popup popup-with-form popup_for-avatar"> 
         <form class="popup__container popup__container_for-form popup__container_for-avatar" novalidate>  
@@ -85,7 +84,7 @@
       <section class="popup popup_image">
         <div class="popup__container">  
           <button class="popup__close-button" type="button"></button> 
-          <img class="popup__image" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt=""> 
+          <img class="popup__image" src="#" alt=""> 
           <p class="popup__title popup__title_for-image"></p> 
         </div> 
       </section> 

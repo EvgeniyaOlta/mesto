@@ -1,5 +1,3 @@
-'use strict';
-
 export class Api {
   constructor(data) {
     this._baseUrl = data.baseUrl
@@ -102,4 +100,3 @@ export class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
   }
 }
-
