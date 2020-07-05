@@ -1,7 +1,5 @@
-import {myId} from '../pages/index.js'
-
 export class Card {
-  constructor({name, link, likes, _id, owner}, cardSelector, handleCardClick, removePopupClose, removePopupOpen, apiPutLike, apiDeleteLike, apiDeleteCard) { 
+  constructor({name, link, likes, _id, owner}, myId, cardSelector, handleCardClick, removePopupClose, removePopupOpen, apiPutLike, apiDeleteLike, apiDeleteCard, removeButtonSelector) { 
     this._name = name; 
     this._link = link; 
     this._apiDeleteCard = apiDeleteCard; 
@@ -10,11 +8,12 @@ export class Card {
     this._idCard = _id; 
     this._likes = likes; 
     this._owner = owner; 
+    this._myId = myId;
     this._cardSelector = cardSelector; 
     this._handleCardClick = handleCardClick; 
     this._removePopupClose = removePopupClose; 
     this._removePopupOpen = removePopupOpen; 
-    this._removeButton = document.querySelector('.popup__save-button_for-remove') 
+    this._removeButton = document.querySelector(removeButtonSelector) 
   }; 
 
   _getTemplate() {
@@ -39,25 +38,6 @@ export class Card {
         this._element.querySelector('.card__like-button').classList.toggle('card__like-button_active')
         this._element.querySelector('.card__like-amount').textContent = card.likes.length;
       })}
-  };
-
-  _imagePopup= document.querySelector('.popup_image');
-  _imagePopupTitle= this._imagePopup.querySelector('.popup__title'); 
-  _imagePopupImage= this._imagePopup.querySelector('.popup__image'); 
-
-  _escClose(event) { 
-    if (event.key === 'Escape'){
-      this._closeOpenPopup();
-    } 
-  }
-
-  _closeOpenPopup() { 
-    this._imagePopup.classList.toggle('popup_opened'); 
-    if (this._imagePopup.classList.contains('popup_opened')) {
-      document.addEventListener('keyup', () => {
-        this._escClose(event);
-      });
-    }
   };
 
   _removeCard = () => {  
@@ -95,7 +75,7 @@ export class Card {
     this._element = this._getTemplate();
     this._setEventListeners();
     this._element.querySelector('.card__like-amount').textContent = this._likes.length;
-    if (this._owner._id === myId)
+    if (this._owner._id === this._myId)
     {this._element.querySelector('.card__remove-button').classList.add('card__remove-button_active')}
     this._element.querySelector('.card__image').src = this._link;
     this._element.querySelector('.card__name').textContent = this._name

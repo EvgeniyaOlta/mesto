@@ -82,7 +82,6 @@ export class FormValidator {
         }
     });
     this._submitButton = this._formElement.querySelector(this._submitButtonSelector);
-    this._submitButton.classList.add('popup__save-button_disabled');
     this._submitButton.setAttribute('disabled', true);
   }
 }

@@ -20,15 +20,8 @@ import {profileForm} from'../utils/constants.js';
 
 import './index.css';
 
-export let myId;
-
-const generateCard = data => new Card(data, '#card', ({name, link}) => imagePopup.open(name, link), () => removePopup.close(), () => removePopup.open(),
-(idCard) => api.putLike(idCard), (idCard) => api.deleteLike(idCard), (idCard) => api.deleteCard(idCard)).generateCard();
-
-const newCard = new Section({
-  items: card,
-  renderer: item => newCard.addItem(generateCard(item))
-  }, cardsBlockSelector);
+const generateCard = (data, myId) => new Card(data, myId, '#card', ({name, link}) => imagePopup.open(name, link), () => removePopup.close(), () => removePopup.open(),
+(idCard) => api.putLike(idCard), (idCard) => api.deleteLike(idCard), (idCard) => api.deleteCard(idCard), '.popup__save-button_for-remove').generateCard();
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
@@ -42,49 +35,21 @@ const api = new Api({
 })
 
 //Добавляем информацию о пользователе и карточки
+let cardList
 
-const addUserInfo = new Promise(function (resolve, reject) {
-  api.getUserInfo()
-  .then((data) => {
-    const name = data.name;
-    const description = data.about;
-    userInfo.setUserInfo({name, description});
-    userInfo.setAvatar(data.avatar);
-    myId = data._id
-  })
-    if (api.getUserInfo()) {
-        resolve('Запрос на получение информации пользователя обработан успешно');
-    } else {
-        reject('Запрос отклонён');
-    }
-});
-
-const addCards = new Promise(function (resolve, reject) {
-  api.getInitialCards() 
-  .then((cards) => { 
-    const cardList = new Section({ 
-      items: cards, 
-      renderer: item => cardList.addItem(generateCard(item)) 
-      }, cardsBlockSelector); 
-    cardList.renderItems() 
-  })
-    if (api.getInitialCards()) {
-        resolve('Запрос на получение данных карточек обработан успешно');
-    } else {
-        reject('Запрос отклонён');
-    }
-});
-
-const promises = [addUserInfo, addCards]
-
-Promise.all(promises)
-  .then((results) => {
-    console.log(results); 
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userInfoData, cards]) => {
+    const name = userInfoData.name;
+    const about = userInfoData.about;
+    userInfo.setUserInfo({name, about});
+    userInfo.setAvatar(userInfoData.avatar);
+    const myId = userInfoData._id;
+    cardList  = new Section((cards) => cardList.appendItem(generateCard(cards, myId)), cardsBlockSelector);
+    cardList.renderItems(cards);
   })
   .catch(() => {
     console.error('Что-то пошло не так.');
   });
-
 
 // Создание попапов
 const editInfoPopup = new PopupWithForm( 
@@ -137,7 +102,7 @@ const addPhotoPopup = new PopupWithForm(
     addPhotoPopup.renderLoading(true); 
     api.postNewCard(formData.name, formData.link) 
       .then((cards) => { 
-        newCard.addItem(generateCard(cards)) 
+        cardList.prependItem(generateCard(cards, cards.owner._id)) 
       }) 
       .then(() => addPhotoPopup.close())
       .catch(() => {
@@ -148,6 +113,7 @@ const addPhotoPopup = new PopupWithForm(
       }); 
   });  
  
+
 const imagePopup = new PopupWithImage('.popup_image'); 
  
 const removePopup = new Popup('.popup_for-remove') 
