@@ -35,17 +35,14 @@ const api = new Api({
 })
 
 //Добавляем информацию о пользователе и карточки
-let cardList
+const cardList  = new Section((cards, myId) => cardList.appendItem(generateCard(cards, myId)), cardsBlockSelector);
 
 Promise.all([api.getUserInfo(), api.getInitialCards()])
   .then(([userInfoData, cards]) => {
-    const name = userInfoData.name;
-    const about = userInfoData.about;
-    userInfo.setUserInfo({name, about});
+    userInfo.setUserInfo(userInfoData);
     userInfo.setAvatar(userInfoData.avatar);
     const myId = userInfoData._id;
-    cardList  = new Section((cards) => cardList.appendItem(generateCard(cards, myId)), cardsBlockSelector);
-    cardList.renderItems(cards);
+    cardList.renderItems(cards, myId);
   })
   .catch(() => {
     console.error('Что-то пошло не так.');
